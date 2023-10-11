@@ -1,0 +1,8 @@
+**/build
+**/node_modules/
+**/book
+**/.venv
+**/.env*
+**/.ruff_cache
+**/*.bak
+.github/pull_request_template.md

@@ -1,0 +1,27 @@
+{
+  "name": "learneasyapp",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "format:check": "prettier --check 'src/**/*.js'",
+    "format:write": "prettier --write 'src/**/*.js'"
+  },
+  "author": "tyrovirtuosso",
+  "license": "ISC",
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.9.7",
+    "redux": "^4.2.1",
+    "tailwindcss": "^3.3.3"
+  },
+  "devDependencies": {
+    "husky": "^8.0.3",
+    "prettier": "^3.0.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run format:check"
+    }
+  }
+}
