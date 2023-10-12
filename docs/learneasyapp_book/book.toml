@@ -1,0 +1,6 @@
+[book]
+authors = ["tyrovirtuosso"]
+language = "en"
+multilingual = false
+src = "src"
+title = "LearnEasyApp Documentation"

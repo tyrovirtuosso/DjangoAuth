@@ -10,6 +10,7 @@ readme = "README.md"
 python = "^3.12"
 requests = "^2.31.0"
 django = "^4.2.6"
+djangorestframework = "^3.14.0"
 
 [tool.poetry.group.dev.dependencies]
 pre-commit = "^3.4.0"
@@ -17,8 +18,20 @@ black = "^23.9.1"
 isort = "^5.12.0"
 ruff = "^0.0.292"
 pytest = "^7.4.2"
+djangorestframework-stubs = "^3.14.3"
+
+[tool.black]
+line-length = 99
+target-version = ['py311']
+exclude = '''
+/(
+  | migrations
+)/
+'''
 
 [tool.ruff]
+line-length = 99
+select = ["F", "E", "W", "Q", "I001"]
 exclude = [
     ".bzr",
     ".direnv",
@@ -47,6 +60,48 @@ exclude = [
 # Allow unused variables when underscore-prefixed.
 dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
 
+[tool.mypy]
+plugins = [
+    "mypy_django_plugin.main",
+    "mypy_drf_plugin.main"
+]
+exclude = [
+    "**/migrations/*.py"
+]
+enable_error_code = [
+    "truthy-bool",
+    "truthy-iterable",
+    "redundant-expr",
+    "unused-awaitable",
+    "ignore-without-code",
+    "possibly-undefined",
+    "redundant-self",
+]
+allow_redefinition = false
+check_untyped_defs = true
+disallow_untyped_decorators = true
+disallow_any_explicit = true
+disallow_any_generics = true
+disallow_untyped_calls = true
+disallow_incomplete_defs = true
+explicit_package_bases = true
+ignore_errors = false
+ignore_missing_imports = true
+implicit_reexport = false
+local_partial_types = true
+strict_equality = true
+strict_optional = true
+show_error_codes = true
+no_implicit_optional = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+warn_unused_configs = true
+warn_unreachable = true
+warn_no_return = true
+
+[tool.django-stubs]
+django_settings_module = "learneasyapp.settings"
+strict_settings = false
 
 [build-system]
 requires = ["poetry-core"]
