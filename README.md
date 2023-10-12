@@ -22,3 +22,7 @@ to run all pre-commit hooks manually: `pre-commit run --all-files`
 `npm install -D tailwindcss` to install npm package as development dependency
 `npx prettier --write your-file.js`
 `npm run format:check` to run prettier on client
+
+`docker buildx install `
+`docker build -t learneasyapp_server:dev .`
+`docker run -p 8000:8000 -it --rm learneasyapp_server:dev`
