@@ -7,6 +7,8 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 WORKDIR $APP_DIRECTORY
 COPY requirements.txt ./
+# Install build dependencies for CFFI and other packages
+RUN apk add --no-cache build-base libffi-dev
 # Setup virtual environment and install dependencies
 RUN python -m venv /opt/venv \
     && /opt/venv/bin/pip install --upgrade pip \

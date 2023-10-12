@@ -26,3 +26,7 @@ to run all pre-commit hooks manually: `pre-commit run --all-files`
 `docker buildx install `
 `docker build -t learneasyapp_server:dev .`
 `docker run -p 8000:8000 -it --rm learneasyapp_server:dev`
+
+`docker-compose up -d`
+`docker-compose down`
+`docker-compose --env-file configs/.env.dev up --build`

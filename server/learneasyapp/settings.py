@@ -1,4 +1,24 @@
+"""
+LearnEasyApp(LEA) App project settings.
+"""
 from pathlib import Path
+
+# Globals
+LEARNEASYAPP_VERSION = "0.1.0"
+
+# Environment variable mappings
+HOST_ENV = "LEA_HOST"
+DEBUG_ENV = "LEA_DEBUG"
+SECRET_ENV = "LEA_SECRET_KEY"
+CACHE_URL = "LEA_CACHE_URL"
+TIMEZONE_ENV = "LEA_TIMEZONE"
+TEST_DB_NAME_ENV = "LEA_TEST_DB_NAME"
+CORS_DOMAIN_ENV = "LEA_CORS_DOMAIN"
+
+# RCRAINFO_ENV = "LEA_RCRAINFO_ENV"
+# LEA_LOG_LEVEL = os.getenv("LEA_LOG_LEVEL", "INFO")
+# LEA_TRAK_LOG_LEVEL = os.getenv("LEA_TRAK_LOG_LEVEL", LEA_LOG_LEVEL)
+# LEA_CORE_LOG_LEVEL = os.getenv("LEA_CORE_LOG_LEVEL", LEA_LOG_LEVEL)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -14,7 +34,6 @@ SECRET_KEY = "django-insecure-vod99-ikw^=f22p6r9_prya@g=ix7(3wd626mdg&y-muo3g3nx
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 

@@ -1,0 +1,65 @@
+version: '3.9'
+services:
+  server:
+    container_name: lea-server
+    restart: unless-stopped
+    image: learneasyapp-server
+    build:
+      context: ./server
+      target: dev
+    ports:
+      - '8000:8000'
+    volumes:
+      - ./server:/app
+    environment:
+      LEA_HOST: 'localhost'
+      LEA_SECRET_KEY: ${LEA_SECRET_KEY}
+      LEA_DEBUG: ${LEA_DEBUG}
+      # LEA_LOG_LEVEL: ${LEA_LOG_LEVEL}
+      LEA_TIMEZONE: ${LEA_TIMEZONE}
+      # LEA_RCRAINFO_ENV: ${LEA_RCRAINFO_ENV}
+      LEA_CORS_DOMAIN: ${LEA_CORS_DOMAIN}
+      # CELERY_BROKER_URL: ${CELERY_BROKER_URL}
+      # CELERY_RESULT_BACKEND: ${CELERY_RESULT_BACKEND}
+      LEA_CACHE_URL: ${LEA_CACHE_URL}
+      LEA_DB_ENGINE: ${LEA_DB_ENGINE}
+      LEA_DB_NAME: ${LEA_DB_NAME}
+      LEA_DB_USER: ${LEA_DB_USER}
+      LEA_DB_PASSWORD: ${LEA_DB_PASSWORD}
+      LEA_DB_HOST: postgres
+      LEA_DB_PORT: ${LEA_DB_PORT}
+    command: |
+      sh -c "
+      python manage.py makemigrations &&
+      python manage.py migrate &&
+      python manage.py runserver 0.0.0.0:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  redis:
+    container_name: lea-redis
+    image: 'redis:alpine'
+    ports:
+      - '6379:6379'
+
+  postgres:
+    restart: unless-stopped
+    container_name: postgres
+    image: 'postgres:14'
+    environment:
+      POSTGRES_DB: ${LEA_DB_NAME}
+      POSTGRES_USER: ${LEA_DB_USER}
+      POSTGRES_PASSWORD: ${LEA_DB_PASSWORD}
+    ports:
+      - '5432:5432'
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U $LEA_DB_USER -d $LEA_DB_NAME']
+      interval: 3s
+      timeout: 3s
+      retries: 5
+    volumes:
+      - development:/var/lib/postgresql/data
+
+volumes:
+  development:
