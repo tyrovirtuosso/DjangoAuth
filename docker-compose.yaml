@@ -1,0 +1,72 @@
+version: '3.9'
+services:
+  server:
+    container_name: lea-server
+    restart: unless-stopped
+    image: learneasyapp-server
+    build:
+      context: ./server
+      target: dev
+    ports:
+      - '8000:8000'
+    volumes:
+      - ./server:/app
+    environment:
+      HOST: 'localhost'
+      SECRET_KEY: ${SECRET_KEY}
+      DEBUG: ${DEBUG}
+      TIMEZONE: ${TIMEZONE}
+      CORS_DOMAIN: ${CORS_DOMAIN}
+      CACHE_URL: ${CACHE_URL}
+      DB_ENGINE: ${DB_ENGINE}
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_HOST: postgres
+      DB_PORT: ${DB_PORT}
+
+      GOOGLE_AUTH_KEY: ${GOOGLE_AUTH_KEY}
+      GOOGLE_AUTH_SECRET_KEY: ${GOOGLE_AUTH_SECRET_KEY}
+      AUTH_COOKIE_SECURE: ${AUTH_COOKIE_SECURE}
+      REDIRECT_URLS: ${REDIRECT_URLS}
+
+      AWS_SES_ACCESS_KEY_ID: ${AWS_SES_ACCESS_KEY_ID}
+      AWS_SES_SECRET_ACCESS_KEY: ${AWS_SES_SECRET_ACCESS_KEY}
+      AWS_SES_REGION_NAME: ${AWS_SES_REGION_NAME}
+      AWS_SES_FROM_EMAIL: ${AWS_SES_FROM_EMAIL}
+      DOMAIN: ${DOMAIN}
+    command: |
+      sh -c "
+      python manage.py makemigrations &&
+      python manage.py migrate &&
+      python manage.py runserver 0.0.0.0:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  redis:
+    container_name: lea-redis
+    image: 'redis:alpine'
+    ports:
+      - '6379:6379'
+
+  postgres:
+    restart: unless-stopped
+    container_name: postgres
+    image: 'postgres:14'
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - '5432:5432'
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U $DB_USER -d $DB_NAME']
+      interval: 3s
+      timeout: 3s
+      retries: 5
+    volumes:
+      - development:/var/lib/postgresql/data
+
+volumes:
+  development:
