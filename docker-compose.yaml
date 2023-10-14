@@ -12,22 +12,29 @@ services:
     volumes:
       - ./server:/app
     environment:
-      LEA_HOST: 'localhost'
-      LEA_SECRET_KEY: ${LEA_SECRET_KEY}
-      LEA_DEBUG: ${LEA_DEBUG}
-      # LEA_LOG_LEVEL: ${LEA_LOG_LEVEL}
-      LEA_TIMEZONE: ${LEA_TIMEZONE}
-      # LEA_RCRAINFO_ENV: ${LEA_RCRAINFO_ENV}
-      LEA_CORS_DOMAIN: ${LEA_CORS_DOMAIN}
-      # CELERY_BROKER_URL: ${CELERY_BROKER_URL}
-      # CELERY_RESULT_BACKEND: ${CELERY_RESULT_BACKEND}
-      LEA_CACHE_URL: ${LEA_CACHE_URL}
-      LEA_DB_ENGINE: ${LEA_DB_ENGINE}
-      LEA_DB_NAME: ${LEA_DB_NAME}
-      LEA_DB_USER: ${LEA_DB_USER}
-      LEA_DB_PASSWORD: ${LEA_DB_PASSWORD}
-      LEA_DB_HOST: postgres
-      LEA_DB_PORT: ${LEA_DB_PORT}
+      HOST: 'localhost'
+      SECRET_KEY: ${SECRET_KEY}
+      DEBUG: ${DEBUG}
+      TIMEZONE: ${TIMEZONE}
+      CORS_DOMAIN: ${CORS_DOMAIN}
+      CACHE_URL: ${CACHE_URL}
+      DB_ENGINE: ${DB_ENGINE}
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_HOST: postgres
+      DB_PORT: ${DB_PORT}
+
+      GOOGLE_AUTH_KEY: ${GOOGLE_AUTH_KEY}
+      GOOGLE_AUTH_SECRET_KEY: ${GOOGLE_AUTH_SECRET_KEY}
+      AUTH_COOKIE_SECURE: ${AUTH_COOKIE_SECURE}
+      REDIRECT_URLS: ${REDIRECT_URLS}
+
+      AWS_SES_ACCESS_KEY_ID: ${AWS_SES_ACCESS_KEY_ID}
+      AWS_SES_SECRET_ACCESS_KEY: ${AWS_SES_SECRET_ACCESS_KEY}
+      AWS_SES_REGION_NAME: ${AWS_SES_REGION_NAME}
+      AWS_SES_FROM_EMAIL: ${AWS_SES_FROM_EMAIL}
+      DOMAIN: ${DOMAIN}
     command: |
       sh -c "
       python manage.py makemigrations &&
@@ -48,13 +55,13 @@ services:
     container_name: postgres
     image: 'postgres:14'
     environment:
-      POSTGRES_DB: ${LEA_DB_NAME}
-      POSTGRES_USER: ${LEA_DB_USER}
-      POSTGRES_PASSWORD: ${LEA_DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
     ports:
       - '5432:5432'
     healthcheck:
-      test: ['CMD-SHELL', 'pg_isready -U $LEA_DB_USER -d $LEA_DB_NAME']
+      test: ['CMD-SHELL', 'pg_isready -U $DB_USER -d $DB_NAME']
       interval: 3s
       timeout: 3s
       retries: 5
