@@ -28,6 +28,6 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 # local
 FROM builder as dev
 EXPOSE 8000
-RUN python manage.py makemigrations
-RUN python manage.py migrate
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+# RUN python manage.py makemigrations
+# RUN python manage.py migrate
+# CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
