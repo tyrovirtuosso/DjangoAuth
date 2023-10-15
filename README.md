@@ -30,3 +30,5 @@ to run all pre-commit hooks manually: `pre-commit run --all-files`
 `docker-compose up -d`
 `docker-compose down`
 `docker-compose --env-file configs/.env.dev up --build`
+
+`psql -h localhost -U admin -d lea_db`
