@@ -2,10 +2,20 @@
 # Build stage
 FROM node:20-alpine as builder
 LABEL maintainer="tyrovirtuosso@protonmail.com"
+
+RUN apk add --no-cache libc6-compat
+RUN npm i -g npm
+
+# Set the working directory inside the container
 WORKDIR /app
+
+# Copy package.json and package-lock.json to the container
+COPY package*.json ./
+
+# Install project dependencies
+RUN npm install
+
 COPY . .
-# RUN npm ci --silent
-# RUN npm run build
 
 # # test
 # FROM builder as test
@@ -16,7 +26,7 @@ COPY . .
 FROM builder as dev
 WORKDIR /app
 EXPOSE 3000
-# CMD ["npm", "start"]
+CMD ["npm", "run", "dev"]
 
 # # Production
 # FROM nginx:1.24.0-alpine as production
