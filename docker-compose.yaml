@@ -7,6 +7,27 @@ services:
     build:
       context: ./server
       target: dev
+      args:
+        - SECRET_KEY=${SECRET_KEY}
+        - DEBUG=${DEBUG}
+        - TIMEZONE=${TIMEZONE}
+        - CORS_DOMAIN=${CORS_DOMAIN}
+        - CACHE_URL=${CACHE_URL}
+        - DB_ENGINE=${DB_ENGINE}
+        - DB_NAME=${DB_NAME}
+        - DB_USER=${DB_USER}
+        - DB_PASSWORD=${DB_PASSWORD}
+        - DB_HOST=${DB_HOST}
+        - DB_PORT=${DB_PORT}
+        - GOOGLE_AUTH_KEY=${GOOGLE_AUTH_KEY}
+        - GOOGLE_AUTH_SECRET_KEY=${GOOGLE_AUTH_SECRET_KEY}
+        - AUTH_COOKIE_SECURE=${AUTH_COOKIE_SECURE}
+        - REDIRECT_URLS=${REDIRECT_URLS}
+        - AWS_SES_ACCESS_KEY_ID=${AWS_SES_ACCESS_KEY_ID}
+        - AWS_SES_SECRET_ACCESS_KEY=${AWS_SES_SECRET_ACCESS_KEY}
+        - AWS_SES_REGION_NAME=${AWS_SES_REGION_NAME}
+        - AWS_SES_FROM_EMAIL=${AWS_SES_FROM_EMAIL}
+        - DOMAIN=${DOMAIN}
     ports:
       - '8000:8000'
     volumes:
@@ -22,7 +43,7 @@ services:
       DB_NAME: ${DB_NAME}
       DB_USER: ${DB_USER}
       DB_PASSWORD: ${DB_PASSWORD}
-      DB_HOST: postgres
+      DB_HOST: ${DB_HOST}
       DB_PORT: ${DB_PORT}
 
       GOOGLE_AUTH_KEY: ${GOOGLE_AUTH_KEY}
@@ -67,6 +88,17 @@ services:
       retries: 5
     volumes:
       - development:/var/lib/postgresql/data
+
+  client:
+    container_name: lea-client
+    build:
+      context: ./client
+      target: dev
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./client:/app
+    command: sh -c "cd /app; npm run dev"
 
 volumes:
   development:
