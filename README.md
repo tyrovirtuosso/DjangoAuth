@@ -6,10 +6,13 @@ A Supercharged Learning Experience.
 
 `pyenv install 3.12.0` # for installing a local python
 `pyenv local 3.12.0 `# Setting a Python version for this project directory
+`pyenv shell 3.9.11`
 `pyenv init` # Initializing pyenv in project directory
-`python --version `# checking python version
 `poetry config virtualenvs.in-project true` # Tell poetry to create virtual environments in the current project directory
 `poetry init`
+`poetry env use $(pyenv which python)`
+`poetry install`
+`python --version `# checking python version
 `poetry add isort` # example of installing packages with poetry
 `poetry add pytest --group dev` # example of installing development only packages with poetry
 `poetry show --outdated` # show outdated packages
