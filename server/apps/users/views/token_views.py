@@ -9,11 +9,13 @@ from rest_framework_simplejwt.views import (
 class CustomTokenObtainPairView(TokenObtainPairView):
     def post(self, request, *args, **kwargs):
         response = super().post(request, *args, **kwargs)
+        print("CustomTokenObtainPairView")
 
         if response.status_code == 200:
             access_token = response.data.get("access")
             refresh_token = response.data.get("refresh")
-
+            print(access_token)
+            print(refresh_token)
             response.set_cookie(
                 "access",
                 access_token,
@@ -64,6 +66,8 @@ class CustomTokenRefreshView(TokenRefreshView):
 class CustomTokenVerifyView(TokenVerifyView):
     def post(self, request, *args, **kwargs):
         access_token = request.COOKIES.get("access")
+        print("here in CustomTokenVerifyView")
+        print(access_token)
 
         if access_token:
             request.data["token"] = access_token
