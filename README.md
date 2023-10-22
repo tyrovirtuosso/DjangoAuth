@@ -2,7 +2,7 @@
 
 <!-- ![Project Image](link-to-project-image) -->
 
-This project demonstrates how to implement a fully featured JSON Web Token(JWT) Authentication system using Django and NextJS. It includes features such as account activation, password reset, and social authentication with Google OAuth2.
+This project implements a fully featured JSON Web Token(JWT) Authentication system using Django and NextJS. It includes features such as account activation, password reset, and social authentication with Google OAuth2.
 
 ## Table of Contents
 
