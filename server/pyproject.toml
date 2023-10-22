@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "learneasyapp"
+name = "django_auth"
 version = "0.1.0"
-description = "A Supercharged Learning Experience."
+description = "Implementation of Django Authentication with Nextjs"
 authors = ["tyrovirtuosso <tyrovirtuosso@proton.me>"]
 license = "MIT"
 readme = "README.md"
@@ -102,7 +102,7 @@ warn_unreachable = true
 warn_no_return = true
 
 [tool.django-stubs]
-django_settings_module = "learneasyapp.settings"
+django_settings_module = "django_auth.settings"
 strict_settings = false
 
 [build-system]

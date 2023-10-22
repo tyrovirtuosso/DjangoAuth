@@ -1,3 +1,3 @@
 # Summary
 
-- [LearnEasyApp Introduction](introduction.md)
+- [DjangoAuth Introduction](introduction.md)

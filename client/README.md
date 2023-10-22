@@ -1,4 +1,4 @@
-# LearnEasyApp Client
+# DjangoAuth Client
 
 ### How was it made?
 

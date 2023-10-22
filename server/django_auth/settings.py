@@ -1,5 +1,5 @@
 """
-LearnEasyApp(LEA) App project settings.
+DjangoAuth(DA) App project settings.
 """
 import os
 import re
@@ -8,14 +8,14 @@ from pathlib import Path
 from django.core.management.utils import get_random_secret_key
 
 # Globals
-LEARNEASYAPP_VERSION = "0.1.0"
+DjangoAuth_VERSION = "0.1.0"
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 AUTH_USER_MODEL = "users.UserAccount"
 
-WSGI_APPLICATION = "learneasyapp.wsgi.application"
+WSGI_APPLICATION = "django_auth.wsgi.application"
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv("SECRET_KEY", get_random_secret_key())
@@ -51,7 +51,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "learneasyapp.urls"
+ROOT_URLCONF = "django_auth.urls"
 
 TEMPLATES = [
     {
@@ -98,7 +98,7 @@ AWS_SES_REGION_ENDPOINT = f"email.{AWS_SES_REGION_NAME}.amazonaws.com"
 AWS_SES_FROM_EMAIL = os.getenv("AWS_SES_FROM_EMAIL")
 USE_SES_V2 = True
 DOMAIN = os.getenv("DOMAIN")
-SITE_NAME = "Learn Easy"
+SITE_NAME = "Django Auth"
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [

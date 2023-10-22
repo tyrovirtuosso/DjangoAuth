@@ -1,37 +1,5 @@
-# LearnEasyApp
+## Django-NextJS Authentication Page
 
-A Supercharged Learning Experience.
+This project demonstrates how to implement a fully featured JSON Web Token(JWT) Authentication system in Django and NextJS. This includes features like account activation, password reset, and also social authentication with google oauth2.
 
-# Commands used
-
-`pyenv install 3.12.0` # for installing a local python
-`pyenv local 3.12.0 `# Setting a Python version for this project directory
-`pyenv shell 3.9.11`
-`pyenv init` # Initializing pyenv in project directory
-`poetry config virtualenvs.in-project true` # Tell poetry to create virtual environments in the current project directory
-`poetry init`
-`poetry env use $(pyenv which python)`
-`poetry install`
-`python --version `# checking python version
-`poetry add isort` # example of installing packages with poetry
-`poetry add pytest --group dev` # example of installing development only packages with poetry
-`poetry show --outdated` # show outdated packages
-`poetry update` # Update all packages to their latest compatible versions
-
-after creating `.pre-commit-config.yaml` file, do `pre-commit install` for using github hooks
-to run all pre-commit hooks manually: `pre-commit run --all-files`
-
-`npm start` for development and `npm build` for production.
-`npm install -D tailwindcss` to install npm package as development dependency
-`npx prettier --write your-file.js`
-`npm run format:check` to run prettier on client
-
-`docker buildx install `
-`docker build -t learneasyapp_server:dev .`
-`docker run -p 8000:8000 -it --rm learneasyapp_server:dev`
-
-`docker-compose up -d`
-`docker-compose down`
-`docker-compose --env-file configs/.env.dev up --build`
-
-`psql -h localhost -U admin -d lea_db`
+For the full documentation, please refer to the DjangoNextJS-Auth-book.

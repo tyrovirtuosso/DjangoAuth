@@ -1,4 +1,4 @@
-# LearnEasyApp Web Server
+# DjangoAuth Web Server
 
 ### How was it made?
 
@@ -11,7 +11,7 @@ define data models, serialize and expose the API.
 It also depends on the following other services being available.
 
 - A message broker, such as [Redis](https://redis.io/).
-- The [Celery](https://docs.celeryq.dev/en/stable/) task queue, which is already built into LearnEasyApp
+- The [Celery](https://docs.celeryq.dev/en/stable/) task queue, which is already built into DjangoAuth
   but is required to be spun up as separate service.
   - This is included in the [docker-compose](/docker-compose.yaml) file, or can be spun up
     separately.

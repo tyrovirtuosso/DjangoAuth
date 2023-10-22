@@ -1,9 +1,9 @@
 version: '3.9'
 services:
   server:
-    container_name: lea-server
+    container_name: da-server
     restart: unless-stopped
-    image: learneasyapp-server
+    image: django_auth-server
     build:
       context: ./server
       target: dev
@@ -90,7 +90,7 @@ services:
       - development:/var/lib/postgresql/data
 
   client:
-    container_name: lea-client
+    container_name: da-client
     build:
       context: ./client
       target: dev

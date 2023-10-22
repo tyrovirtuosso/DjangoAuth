@@ -1,1 +1,1 @@
-LearnEasyApp is a supercharged Anki
+DjangoAuth is a supercharged Anki
