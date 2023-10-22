@@ -8,8 +8,8 @@ import { Setup } from '@/components/utils';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Full Auth',
-  description: 'Full Auth application that provides jwt authentication',
+  title: 'Django Nextjs Authentication',
+  description: 'Full Auth application that provides authentication through Json Web Tokens(JWT)',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
